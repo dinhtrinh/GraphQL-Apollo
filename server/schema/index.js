@@ -9,7 +9,9 @@ const {
 const {
   GetEmployees,
   GetEmployee,
-  CreateEmployee
+  CreateEmployee,
+  UpdateEmployee,
+  DeleteEmployee
 } = employee;
 
 const RootQuery = new GraphQLObjectType({
@@ -23,7 +25,9 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name:'Mutation',
   fields:{
-    CreateEmployee: CreateEmployee
+    CreateEmployee: CreateEmployee,
+    UpdateEmployee: UpdateEmployee,
+    DeleteEmployee: DeleteEmployee
   }
 });
 
