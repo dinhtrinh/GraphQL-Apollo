@@ -28,7 +28,7 @@ const EmployeeType = new GraphQLObjectType({
     city: {type: GraphQLString},
     state_province: {type: GraphQLString},
     zip_postal_code: { type: GraphQLString},
-    contry_region: {type: GraphQLString},
+    country_region: {type: GraphQLString},
     notes: {type: GraphQLString},
   })
 });
@@ -64,7 +64,7 @@ const CreateEmployee = {
     city: {type: GraphQLString},
     state_province: {type: GraphQLString},
     zip_postal_code: {type: GraphQLString},
-    contry_region:{type: GraphQLString},
+    country_region:{type: GraphQLString},
     notes: {type: GraphQLString},
   },
   resolve(parent, args)
@@ -83,7 +83,7 @@ const CreateEmployee = {
       city: args.city,
       state_province: args.state_province,
       zip_postal_code: args.zip_postal_code,
-      contry_region: args.contry_region,
+      country_region: args.contry_region,
       notes: args.notes,
     });
 
@@ -108,7 +108,7 @@ const UpdateEmployee = {
     city: {type: GraphQLString},
     state_province: {type: GraphQLString},
     zip_postal_code: {type: GraphQLString},
-    contry_region:{type: GraphQLString},
+    country_region:{type: GraphQLString},
     notes: {type: GraphQLString},
   },
   resolve(parent, args)
@@ -130,7 +130,7 @@ const UpdateEmployee = {
           city: args.city,
           state_province: args.state_province,
           zip_postal_code: args.zip_postal_code,
-          contry_region: args.contry_region,
+          country_region: args.contry_region,
           notes: args.notes,
         }
       },

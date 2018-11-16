@@ -23,7 +23,7 @@ const employeeSchema = new Schema({
   city: String,
   state_province: String,
   zip_postal_code: String,
-  contry_region:String,
+  country_region:String,
   notes: String,
   company: String,
 });

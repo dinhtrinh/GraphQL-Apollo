@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row,
-   Table, Button ,Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Label, Input,
+import { graphql, compose } from 'react-apollo';
+import { Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row,
+   Table, Button
  } from 'reactstrap';
-import { gql } from 'apollo-boost';
-import { graphql } from 'react-apollo';
-
-const getEmployeeQuery = gql`
-  {
-    employees{
-      id
-      first_name
-      last_name
-      email_address
-    }
-  }
-`
+import { getEmployeeListQuery } from './queries';
+import CreateEmployeeForm from './CreateEmployee';
 
 class Employees extends Component {
   constructor(props){
@@ -25,6 +15,7 @@ class Employees extends Component {
 
     this.displayEmployees = this.displayEmployees.bind(this);
     this.toggleSuccess = this.toggleSuccess.bind(this);
+    this.createEmployee = this.createEmployee.bind(this);
   }
 
   toggleSuccess() {
@@ -33,14 +24,18 @@ class Employees extends Component {
     });
   }
 
+  createEmployee(values)
+  {
+    console.log('handleSubmit', values);
+  }
+
   displayEmployees(){
-    const data = this.props.data;
+    const data = this.props.employees;
     if(data.loading)
     {
       return <tr><td>loading...</td></tr>
     }
     else{
-      console.log('data.employees', data.employees)
       return data.employees.map((employee) =>{
         return (
           <tr key={employee.id}>
@@ -86,60 +81,11 @@ class Employees extends Component {
                     {this.displayEmployees()}
                   </tbody>
                 </Table>
-                <Modal isOpen={this.state.success} toggle={this.toggleSuccess}
-                       className={'modal-success ' + this.props.className}>
-                  <ModalHeader toggle={this.toggleSuccess}>CREATE NEW EMPLOYEE</ModalHeader>
-                  <ModalBody>
-                    <FormGroup row className="my-0">
-                      <Col xs="6">
-                        <FormGroup>
-                          <Label htmlFor="city">First Name</Label>
-                          <Input type="text" id="city" placeholder="Enter your first name" />
-                        </FormGroup>
-                      </Col>
-                      <Col xs="6">
-                        <FormGroup>
-                          <Label htmlFor="postal-code">Last Name</Label>
-                          <Input type="text" id="postal-code" placeholder="Enter your last name" />
-                        </FormGroup>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label htmlFor="company">Company</Label>
-                      <Input type="text" id="company" placeholder="Enter your company name" />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label htmlFor="vat">VAT</Label>
-                      <Input type="text" id="vat" placeholder="DE1234567890" />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label htmlFor="street">Street</Label>
-                      <Input type="text" id="street" placeholder="Enter street name" />
-                    </FormGroup>
-                    <FormGroup row className="my-0">
-                      <Col xs="8">
-                        <FormGroup>
-                          <Label htmlFor="city">City</Label>
-                          <Input type="text" id="city" placeholder="Enter your city" />
-                        </FormGroup>
-                      </Col>
-                      <Col xs="4">
-                        <FormGroup>
-                          <Label htmlFor="postal-code">Postal Code</Label>
-                          <Input type="text" id="postal-code" placeholder="Postal Code" />
-                        </FormGroup>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label htmlFor="country">Country</Label>
-                      <Input type="text" id="country" placeholder="Country name" />
-                    </FormGroup>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="success" onClick={this.toggleSuccess}>Save</Button>{' '}
-                    <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
-                  </ModalFooter>
-                </Modal>
+                <CreateEmployeeForm toggleSuccess={this.toggleSuccess}
+                  isToggle={this.state.success}
+                  className={this.props.className}
+                  createEmployee={this.createEmployee}
+                />
                 <nav>
                   <Pagination>
                     <PaginationItem><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
@@ -161,4 +107,6 @@ class Employees extends Component {
   }
 }
 
-export default graphql(getEmployeeQuery)(Employees);
+export default compose(
+  graphql(getEmployeeListQuery, {name: "employees"})
+)(Employees);
