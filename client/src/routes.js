@@ -187,6 +187,11 @@ const Products = Loadable({
   loading: Loading,
 });
 
+const Employees = Loadable({
+  loader: () => import('./views/Employees/Employees'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
@@ -231,6 +236,7 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/products', exact: true, name: 'Products', component: Products },
+  { path: '/employees', exact: true, name: 'Employees', component: Employees }
 ];
 
 export default routes;

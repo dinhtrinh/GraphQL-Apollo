@@ -95,9 +95,9 @@ const UpdateEmployee = {
   type: EmployeeType,
   args:{
     id: {type: new GraphQLNonNull(GraphQLString)},
-    last_name: {type: new GraphQLNonNull(GraphQLString)},
-    first_name: {type: new GraphQLNonNull(GraphQLString)},
-    email_address: {type: new GraphQLNonNull(GraphQLString)},
+    last_name: {type: GraphQLString},
+    first_name: {type: GraphQLString},
+    email_address: {type: GraphQLString},
     company: {type: GraphQLString},
     job_title: {type: GraphQLString},
     bussiness_phone: {type: GraphQLString},

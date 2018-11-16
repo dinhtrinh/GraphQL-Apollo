@@ -27,6 +27,7 @@ import { Login, Page404, Page500, Register } from './Pages';
 import { Colors, Typography } from './Theme';
 import Widgets from './Widgets';
 import Products from './Products';
+import Employees from './Employees';
 
 export {
   Badges,
@@ -67,4 +68,5 @@ export {
   Breadcrumbs,
   Paginations,
   Products,
+  Employees
 };

@@ -15,6 +15,11 @@ export default {
       icon: 'icon-list'
     },
     {
+      name: 'Employees',
+      url: '/employees',
+      icon: 'fa fa-user-circle'
+    },
+    {
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
