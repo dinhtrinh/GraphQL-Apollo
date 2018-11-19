@@ -3,7 +3,7 @@ import { graphql, compose } from 'react-apollo';
 import { Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row,
    Table, Button
  } from 'reactstrap';
-import { getEmployeeListQuery } from './queries';
+import { getEmployeeListQuery, createEmployeeQuery } from './queries';
 import CreateEmployeeForm from './CreateEmployee';
 
 class Employees extends Component {
@@ -22,11 +22,6 @@ class Employees extends Component {
     this.setState({
       success: !this.state.success,
     });
-  }
-
-  createEmployee(values)
-  {
-    console.log('handleSubmit', values);
   }
 
   displayEmployees(){
@@ -48,6 +43,29 @@ class Employees extends Component {
         )
       });
     }
+  }
+
+  createEmployee(values){
+    this.props.createEmployee({
+      variables:{
+        first_name: values.first_name,
+        last_name: values.last_name,
+        email_address: values.email_address,
+        job_title: values.job_title,
+        bussiness_phone: values.bussiness_phone,
+        home_phone: values.home_phone,
+        mobile_phone: values.mobile_phone,
+        fax_number: values.fax_number,
+        address: values.address,
+        city: values.city,
+        state_province: values.state_province,
+        zip_postal_code: values.zip_postal_code,
+        country_region: values.country_region,
+        notes: values.notes,
+        company: values.company,
+      },
+      refetchQueries:[{query: getEmployeeListQuery}]
+    });
   }
 
   render() {
@@ -108,5 +126,6 @@ class Employees extends Component {
 }
 
 export default compose(
-  graphql(getEmployeeListQuery, {name: "employees"})
+  graphql(getEmployeeListQuery, {name: "employees"}),
+  graphql(createEmployeeQuery, {name: "createEmployee"})
 )(Employees);

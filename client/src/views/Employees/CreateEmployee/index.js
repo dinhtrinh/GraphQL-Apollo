@@ -5,10 +5,10 @@ import { Col, Button ,Modal, ModalBody, ModalHeader, ModalFooter, FormGroup
 import renderField from '../../../Utils/renderField';
 
 let CreateEmployeeForm = props => {
-  const { createEmployee, toggleSuccess, isToggle, className } = props;
+  const { createEmployee, toggleSuccess, isToggle, className, handleSubmit } = props;
   return (
-    <form onSubmit={createEmployee}>
       <Modal isOpen={isToggle} toggle={toggleSuccess} className={'modal-success modal-lg ' + className}>
+        <form onSubmit={handleSubmit(createEmployee)}>
         <ModalHeader toggle={toggleSuccess}>CREATE NEW EMPLOYEE</ModalHeader>
         <ModalBody>
             <FormGroup row className="my-0">
@@ -99,8 +99,8 @@ let CreateEmployeeForm = props => {
           <Button type="submit" color="success" onClick={toggleSuccess}>Save</Button>
           <Button color="secondary" onClick={toggleSuccess}>Cancel</Button>
         </ModalFooter>
+        </form>
       </Modal>
-    </form>
   )
 }
 

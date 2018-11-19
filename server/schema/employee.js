@@ -15,10 +15,10 @@ const EmployeeType = new GraphQLObjectType({
   name:'Employee',
   fields:()=>({
     id:{ type: GraphQLID },
-    company: { type: GraphQLString},
     last_name: { type: GraphQLString},
     first_name: { type: GraphQLString},
     email_address: {type: GraphQLString},
+    company: { type: GraphQLString},
     job_title: { type: GraphQLString},
     bussiness_phone: { type: GraphQLString},
     home_phone: {type: GraphQLString},
