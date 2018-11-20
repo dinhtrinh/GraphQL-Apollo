@@ -2,5 +2,5 @@
   "name": "Tables",
   "version": "0.0.0",
   "private": true,
-  "main": "./Employees.js"
+  "main": ".EmployeeList/Employees.js"
 }

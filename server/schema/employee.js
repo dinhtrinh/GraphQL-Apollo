@@ -83,7 +83,7 @@ const CreateEmployee = {
       city: args.city,
       state_province: args.state_province,
       zip_postal_code: args.zip_postal_code,
-      country_region: args.contry_region,
+      country_region: args.country_region,
       notes: args.notes,
     });
 
@@ -130,7 +130,7 @@ const UpdateEmployee = {
           city: args.city,
           state_province: args.state_province,
           zip_postal_code: args.zip_postal_code,
-          country_region: args.contry_region,
+          country_region: args.country_region,
           notes: args.notes,
         }
       },

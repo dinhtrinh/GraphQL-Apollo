@@ -4,12 +4,12 @@ import { Col, Button ,Modal, ModalBody, ModalHeader, ModalFooter, FormGroup
  } from 'reactstrap';
 import renderField from '../../../Utils/renderField';
 
-let CreateEmployeeForm = props => {
-  const { createEmployee, toggleCreate, isToggleCreate, className, handleSubmit } = props;
+let UpdateEmployeeForm = props => {
+  const { updateEmployee, toggleUpdate, isToggleUpdate, className, handleSubmit } = props;
   return (
-      <Modal isOpen={isToggleCreate} toggle={toggleCreate} className={'modal-success modal-lg ' + className}>
-        <form onSubmit={handleSubmit(createEmployee)}>
-        <ModalHeader toggle={toggleCreate}>CREATE NEW EMPLOYEE</ModalHeader>
+      <Modal isOpen={isToggleUpdate} toggle={toggleUpdate} className={'modal-success modal-lg ' + className}>
+        <form onSubmit={handleSubmit(updateEmployee)}>
+        <ModalHeader toggle={toggleUpdate}>UPDATE EMPLOYEE</ModalHeader>
         <ModalBody>
             <FormGroup row className="my-0">
               <Col xs="4">
@@ -96,16 +96,16 @@ let CreateEmployeeForm = props => {
             </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button type="submit" color="success" onClick={toggleCreate}>Save</Button>
-          <Button color="secondary" onClick={toggleCreate}>Cancel</Button>
+          <Button type="submit" color="success" onClick={toggleUpdate}>Save</Button>
+          <Button color="secondary" onClick={toggleUpdate}>Cancel</Button>
         </ModalFooter>
         </form>
       </Modal>
   )
 }
 
-CreateEmployeeForm = reduxForm({
-  form: 'createEmployee'
-})(CreateEmployeeForm);
+UpdateEmployeeForm = reduxForm({
+  form: 'updateEmployee'
+})(UpdateEmployeeForm);
 
-export default CreateEmployeeForm;
+export default UpdateEmployeeForm;

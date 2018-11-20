@@ -4,7 +4,7 @@ import Loadable from 'react-loadable'
 import DefaultLayout from './containers/DefaultLayout';
 
 function Loading() {
-  return <div>Loading...</div>;
+  return <div>Loading... router</div>;
 }
 
 const Breadcrumbs = Loadable({
@@ -188,7 +188,7 @@ const Products = Loadable({
 });
 
 const Employees = Loadable({
-  loader: () => import('./views/Employees/Employees'),
+  loader: () => import('./views/Employees/EmployeeList/Employees'),
   loading: Loading,
 });
 
