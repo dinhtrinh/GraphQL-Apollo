@@ -24,8 +24,8 @@ export const getEmployeeListQuery = gql`
 `
 
 export const getSingleEmployeeQuery = gql`
-  {
-    employee($id: String!){
+  query($id: String){
+    employee(id: $id){
       id
       first_name
       last_name

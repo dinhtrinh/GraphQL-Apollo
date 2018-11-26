@@ -42,7 +42,7 @@ const GetEmployees = {
 
 const GetEmployee = {
   type: EmployeeType,
-  args:{id: {type: GraphQLID}},
+  args:{id: {type: GraphQLString}},
   resolve(parent, args){
     return Employee.findById(args.id);
   }

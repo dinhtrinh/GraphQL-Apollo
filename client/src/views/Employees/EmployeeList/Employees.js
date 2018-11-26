@@ -10,6 +10,7 @@ import {
   createEmployeeQuery,
   updateEmployeeQuery
 } from '../queries';
+import { selectedEmployee } from '../actions';
 import CreateEmployeeForm from '../CreateEmployee';
 import UpdateEmployeeForm from '../UpdateEmployee';
 
@@ -34,10 +35,13 @@ class Employees extends Component {
     });
   }
 
-  toggleUpdate() {
+  toggleUpdate(employeeId) {
+    const { selectedEmployee, data } = this.props;
+
     this.setState({
       update: !this.state.update,
     });
+    selectedEmployee(employeeId);
   }
 
   displayEmployees(){
@@ -50,7 +54,7 @@ class Employees extends Component {
       return data.employees.map((employee) =>{
         return (
           <tr key={employee.id}>
-            <td onClick={this.toggleUpdate}>{employee.first_name}</td>
+            <td onClick={() => {this.toggleUpdate(employee.id)}}>{employee.first_name}</td>
             <td>{employee.last_name}</td>
             <td>{employee.email_address}</td>
             <td>{employee.bussiness_phone}</td>
@@ -182,9 +186,23 @@ class Employees extends Component {
   }
 }
 
+const mapStateToProps = ({ employees }) => ({
+  selectedEmployeeId: employees.selectedEmployeeId
+});
+
+const mapDispatchToProps = dispatch => ({
+  selectedEmployee: (employeeId) => dispatch(selectedEmployee(employeeId))
+});
+
 export default compose(
   graphql(getEmployeeListQuery, {name: "employees"}),
-  graphql(getSingleEmployeeQuery, {name: "employee"}),
+  graphql(getSingleEmployeeQuery, {options: (props)=>{
+    return {
+      variables:{
+        id: '5bed3054d93c547788a6ff33'
+      }
+    }
+  }}),
   graphql(createEmployeeQuery, {name: "createEmployee"}),
   graphql(updateEmployeeQuery, {name: "updateEmployee"})
-)(Employees);
+)(connect(mapStateToProps, mapDispatchToProps)(Employees));

@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form'
-import employeeReducer from '../views/Employees/EmployeeList/reducer';
+import employeeReducer from '../views/Employees/reducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
